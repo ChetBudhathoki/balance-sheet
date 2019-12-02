@@ -1,0 +1,11 @@
+.button {
+    color: rgb(11, 202, 11);
+    background-color: white;
+    font-size: large;
+}
+
+.button:hover   {
+    background-color: rgb(11, 202, 11);
+    color: white;
+    font-size: large;
+}
