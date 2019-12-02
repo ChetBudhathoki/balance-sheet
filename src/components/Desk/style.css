@@ -1,0 +1,12 @@
+.desk   {
+  height: 750px;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+  color: rgb(11, 202, 11);
+  font-size: x-large;
+  text-shadow: 1px 1px black;
+}
+
+
