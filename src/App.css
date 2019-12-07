@@ -3,12 +3,13 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 400px;
+  
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: rgb(201, 197, 197);
+  min-height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,4 +20,8 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.App-title  {
+  color: #fff;
 }
