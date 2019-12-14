@@ -11,6 +11,7 @@ import Profile from "./views/Profile";
 import { useAuth0 } from "./react-auth0-spa";
 import history from "./utils/history";
 import MySheet from "./components/MySheet"
+import Exam from "./views/Exam"
 
 // styles
 import "./App.css";
@@ -36,6 +37,7 @@ const App = () => {
         <Container className="flex-grow-1 mt-2">
           <Switch>
             <Route path="/" exact component={Home} />
+            <Route path="/sheet" exact component={Exam} />
             <Route path="/balance" exact component={Balance} />
             <Route path="/mysheet" exact component={MySheet} />
             <PrivateRoute path="/profile" component={Profile} />
