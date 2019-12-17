@@ -5,7 +5,7 @@ import loading from "../assets/loading.svg";
 const Loading = () => (
   <div>
     <div className="spinner">
-      <h3 className="uk-text-center"> Please Log in first</h3>
+      <h3 className="uk-text-center"> Please Go Back Log in first</h3>
       <img src={loading} alt="Loading" />
     </div>
   </div>
