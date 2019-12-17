@@ -15,6 +15,7 @@ export default {
   },
 
   saveBalance: function(balanceData) {
+    console.log('hit save balance')
     return axios.post("/api/balances", balanceData);
   }
 };

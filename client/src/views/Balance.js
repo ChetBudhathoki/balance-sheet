@@ -3,12 +3,22 @@ import { Container, Row, Col } from "reactstrap";
 import Loading from "../components/Loading";
 import { useAuth0 } from "../react-auth0-spa";
 import { Link } from "react-router-dom";
-// import { Input, TextArea, FormBtn } from "../components/Form";
+import API from "../utils/API";
+import { Input, TextArea, FormBtn } from "../components/Form";
 
 
 
 const Balance = () => {
 
+  // const [balances, setBalances] = useState([]);
+  // const [email, setEmail] = useState("");
+  // const [category, setCategory] = useState([
+  //   {
+  //     categoryName: "",
+  //     spending: "",
+  //     description: ""
+  //   }
+  // ]);
 
   const { loading, user } = useAuth0();
 
@@ -20,22 +30,59 @@ const Balance = () => {
     )
   }
 
+  // const loadBalances = () => {
+  //   API.getBalances()
+  //     .then(res =>
+  //       setBalances(
+  //         {
+  //           balances: res.data, email: `${user.email}`,
+  //           category: [{ categoryName: "", spending: "", description: "" }]
+  //         })
+  //     )
+  //     .catch(err => console.log(err)
+  //     )
+  // };
 
-  // state = {
-  //   balances: [],
-  //   email: "",
-  //   category: [],
-  //   food: "",
-  //   spending: "",
-  //   description: ""
-  // }
+  // useEffect(() => {
+  //   loadBalances();
+  // }, [])
+
+  // HandleInputchange
+  // const handleInputChange = event => {
+  //   const { name, value } = event.target;
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // };
+
+
+
+  // const handleFormSubmit = event => {
+  //   event.preventDefault();
+  //   if (email) {
+  //     API.saveBalance({
+  //       email: email,
+  //       category: [
+  //         {
+  //           categoryName: category.categoryName,
+  //           spending: category.pending,
+  //           description: category.description
+  //         }]
+  //     })
+  //       .then(res => loadBalances())
+  //       .catch(err => console.log(err));
+  //   }
+  // };
+
+
+
 
   return (
     <Container>
       <Row className="align-items-center profile-header mb-5 text-center text-md-left">
-        <Col className="uk-column-1-2">
+        {/* <Col className="uk-column-1-2">
           <h2>{user.email}</h2>
-        </Col>
+        </Col> */}
         <Col className="uk-column-1-1 uk-text-center">
           <h2> Dear {user.name} Welcome to Balance-Sheet</h2>
         </Col>
@@ -43,114 +90,37 @@ const Balance = () => {
 
       <Link to="/sheet"> Go to sheet </Link>
 
-
       {/* <form>
-        Food
-      <Input
-          // value = {user.name}
-          name="food"
+        <Input
+          // INSTRUCTIONS | Update value and onChange to read from the new useState variables and call the corresponding new useState function 
+          value={categoryName}
+          onChange={this.handleInputChange}
+          name="categoryName"
+          placeholder="Add Spending category"
+        />
+        <Input
+          value={this.state.spending}
+          onChange={this.handleInputChange}
+          name="spending"
           placeholder="Spending"
         />
         <TextArea
-          // value = {user.email}
-          name=""
+          value={this.state.description}
+          onChange={this.handleInputChange}
+          name="description"
           placeholder="Description"
         />
+
         <hr className="uk-divider-icon"></hr>
 
-        Utilitige
-      <Input
-          // value = {user.name}
-          placeholder="Spending"
-        />
-        <TextArea
-          // value = {user.name}
-          placeholder="Description"
-        />
-        <hr className="uk-divider-icon"></hr>
 
-        Housing
-      <Input
-          // value = {user.name}
-          placeholder="Spending"
-        />
-        <TextArea
-          // value = {user.name}
-          placeholder="Description"
-        />
-        <hr className="uk-divider-icon"></hr>
-
-        Transportation
-      <Input
-          // value = {user.name}
-          placeholder="Spending"
-        />
-        <TextArea
-          // value = {user.name}
-          placeholder="Description"
-        />
-        <hr className="uk-divider-icon"></hr>
-
-        Phone(Internet)
-      <Input
-          // value = {user.name}
-          placeholder="Spending"
-        />
-        <TextArea
-          // value = {user.name}
-          placeholder="Description"
-        />
-        <hr className="uk-divider-icon"></hr>
-
-        Insuranse
-      <Input
-          // value = {user.name}
-          placeholder="Spending"
-        />
-        <TextArea
-          // value = {user.name}
-          placeholder="Description"
-        />
-        <hr className="uk-divider-icon"></hr>
-
-        Having Fun
-      <Input
-          // value = {user.name}
-          placeholder="Spending"
-        />
-        <TextArea
-          // value = {user.name}
-          placeholder="Description"
-        />
-        <hr className="uk-divider-icon"></hr>
-
-        Education
-      <Input
-          // value = {user.name}
-          placeholder="Spending"
-        />
-        <TextArea
-          // value = {user.name}
-          placeholder="Description"
-        />
-        <hr className="uk-divider-icon"></hr>
-
-        Others
-      <Input
-          // value = {user.name}
-          placeholder="Spending"
-        />
-        <TextArea
-          // value = {user.name}
-          placeholder="Description"
-        />
 
         <FormBtn>
           Submit our sheet
               </FormBtn>
 
-      </form>
- */}
+      </form> */}
+
 
     </Container>
   )
