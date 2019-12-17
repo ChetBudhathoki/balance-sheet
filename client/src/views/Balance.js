@@ -4,8 +4,8 @@ import { Container, Row, Col } from "reactstrap";
 import Loading from "../components/Loading";
 import { useAuth0 } from "../react-auth0-spa";
 import { Link } from "react-router-dom";
-import API from "../utils/API";
-import { Input, TextArea, FormBtn } from "../components/Form";
+// import API from "../utils/API";
+// import { Input, TextArea, FormBtn } from "../components/Form";
 
 
 
