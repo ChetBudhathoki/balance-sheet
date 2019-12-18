@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const balanceSchema = new Schema({
   email: { type: String, require: true },
+  date: { type: Date, default: Date.now },
   category: [
     {
       categoryName: String,

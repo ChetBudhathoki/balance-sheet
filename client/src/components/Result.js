@@ -1,26 +1,35 @@
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import API from "../utils/API";
 
-import { useAuth0 } from "../react-auth0-spa";
+class Result extends Component {
+  state = {
+    balances: {}
+  };
+  // When this component mounts, grab the book with the _id of this.props.match.params.id
+  // e.g. localhost:3000/books/599dcb67f0f16317844583fc
+  componentDidMount() {
+    API.getBooks(this.balances.body)
+      .then(res => this.setState({ balance: res.data }))
+      .catch(err => console.log(err));
+  }
 
+  render() {
+    return (
+     <div>
+              <h1>
+                Barev
+              </h1>
+           
+              
+            
+          
+            <Link to="/">← Back to Authors</Link>
 
-const Result = () => {
-
-  const user = useAuth0();
-
-  return (
-    <Container> 
-      <Row className="align-items-center profile-header mb-5 text-center text-md-left">
-        <Col className="uk-column-1-2">
-          <h2>hello</h2>
-        </Col>
-        <Col className="uk-column-2-2">
-          <h2>{user.name}</h2>
-        </Col>
-      </Row>
-    </Container>
-  )
-
+            </div>
+          
+    );
+  }
 }
 
 export default Result;
