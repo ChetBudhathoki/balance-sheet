@@ -39,7 +39,7 @@ const App = () => {
             <Route path="/" exact component={Home} />
             <Route path="/sheet" exact component={Exam} />
             <Route path="/balance" exact component={Balance} />
-            <Route path="/mysheet" exact component={MySheet} />
+            <Route path="/balances" exact component={MySheet} />
             <PrivateRoute path="/profile" component={Profile} />
             <Route component={NotFind} /> 
           </Switch>
