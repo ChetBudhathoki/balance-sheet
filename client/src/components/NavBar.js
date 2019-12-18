@@ -44,7 +44,6 @@ const NavBar = () => {
                   tag={RouterNavLink}
                   to="/"
                   exact
-                // activeClassName="router-link-exact-active"
                 >
                   <img className="small" src="Balance.png" alt="logo" />
                 </NavLink>
@@ -52,9 +51,15 @@ const NavBar = () => {
                   tag={RouterNavLink}
                   to="/balance"
                   exact
-                // activeClassName="router-link-exact-active"
                 >
                   Balance
+                </NavLink>
+                <NavLink className="float"
+                  tag={RouterNavLink}
+                  to="/calculator"
+                  exact
+                >
+                  Calculator
                 </NavLink>
               </NavItem>
             </Nav>

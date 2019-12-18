@@ -39,3 +39,29 @@
 .big {
   box-shadow: 3px 3px 6px #000;
 }
+
+
+.float {
+  float: left;
+  margin: 0 auto;
+  margin: 20px;
+}
+
+.calc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  widows: 100%;
+}
+
+.calc-wrapper {
+  /* height: 400px; */
+  /* widows: 600px; */
+}
+
+.calc-row {
+  display: flex;
+  width: 100%;
+}
+
