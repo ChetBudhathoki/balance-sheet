@@ -1,27 +1,26 @@
-// import React, { useState, useEffect } from "react";
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
-import Loading from "../components/Loading";
-import { useAuth0 } from "../react-auth0-spa";
+import React, { useState, useEffect } from "react";
+import API from "../utils/API";
 import { Link } from "react-router-dom";
-// import API from "../utils/API";
-// import { Input, TextArea, FormBtn } from "../components/Form";
-
+import Loading from "../components/Loading";
+import Container from "../components/Container";
+import Moment from "react-moment";
+import { useAuth0 } from "../react-auth0-spa";
+import { Input, TextArea, FormBtn } from "../components/Form";
 
 
 const Balance = () => {
 
-  // const [balances, setBalances] = useState([]);
-  // const [email, setEmail] = useState("");
-  // const [category, setCategory] = useState([
-  //   {
-  //     categoryName: "",
-  //     spending: "",
-  //     description: ""
-  //   }
-  // ]);
-
   const { loading, user } = useAuth0();
+
+  const [balances, setBalances] = useState([]);
+  const [email, setEmail] = useState(user.email);
+  const [categoryName, setCastegoryName] = useState("");
+  const [spending, setSpending] = useState("");
+  const [description, setDescription] = useState("");
+
+  useEffect(() => {
+    loadBalances()
+  }, []);
 
   if (loading || !user) {
     return (
@@ -31,102 +30,110 @@ const Balance = () => {
     )
   }
 
-  // const loadBalances = () => {
-  //   API.getBalances()
-  //     .then(res =>
-  //       setBalances(
-  //         {
-  //           balances: res.data, email: `${user.email}`,
-  //           category: [{ categoryName: "", spending: "", description: "" }]
-  //         })
-  //     )
-  //     .catch(err => console.log(err)
-  //     )
-  // };
-
-  // useEffect(() => {
-  //   loadBalances();
-  // }, [])
-
-  // HandleInputchange
-  // const handleInputChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
+  const loadBalances = () => {
+    API.getBalances()
+      .then(res => {
+        console.log(res)
+        setBalances(
+          {
+            balances: res.data, email: user.email,
+          })
+      })
+      .catch(err => console.log(err))
+  };
 
 
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    if (email && categoryName && spending) {
+      API.saveBalance({
+        email: user.email,
+        categoryName,
+        spending,
+        description
 
-  // const handleFormSubmit = event => {
-  //   event.preventDefault();
-  //   if (email) {
-  //     API.saveBalance({
-  //       email: email,
-  //       category: [
-  //         {
-  //           categoryName: category.categoryName,
-  //           spending: category.pending,
-  //           description: category.description
-  //         }]
-  //     })
-  //       .then(res => loadBalances())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
-
-
-
-
+      })
+        .then(res => loadBalances())
+        .catch(err => console.log(err));
+    }
+  };
   return (
     <Container>
-      <Row className="align-items-center profile-header mb-5 text-center text-md-left">
-        {/* <Col className="uk-column-1-2">
-          <h2>{user.email}</h2>
-        </Col> */}
-        <Col className="uk-column-1-1 uk-text-center">
-          <h2> Dear {user.name} Welcome to Balance-Sheet</h2>
-        </Col>
-      </Row>
+      <h2 className="uk text-center"> Dear {user.name} Welcome to Balance-Sheet</h2>
+      <form>
 
-      <Link to="/sheet"> Go to sheet </Link>
-
-      {/* <form>
         <Input
-          // INSTRUCTIONS | Update value and onChange to read from the new useState variables and call the corresponding new useState function 
           value={categoryName}
-          onChange={this.handleInputChange}
+          onChange={event => setCastegoryName(event.target.value)}
           name="categoryName"
           placeholder="Add Spending category"
         />
         <Input
-          value={this.state.spending}
-          onChange={this.handleInputChange}
+          value={spending}
+          onChange={event => setSpending(event.target.value)}
           name="spending"
           placeholder="Spending"
         />
         <TextArea
-          value={this.state.description}
-          onChange={this.handleInputChange}
+          value={description}
+          onChange={event => setDescription(event.target.value)}
           name="description"
           placeholder="Description"
         />
 
-        <hr className="uk-divider-icon"></hr>
+
+        <FormBtn
+          onClick={handleFormSubmit}
+        >
+          <Link className="sheetlink">
+            Submit Your Spending
+           </Link>
+        </FormBtn>
+
+        <hr className="uk-divider-icon uk-margin-large-top"></hr>
+
+      </form>
+
+      <h2 className="uk text-center"> My Balance Sheet </h2>
+
+      {balances && balances.balances && balances.balances.length ? (
+
+        balances.balances.map(balance => {
+
+          if (balance.email !== user.email) return null
+
+          return (
 
 
+            <div class="uk-flex uk-flex-wrap uk-flex-wrap-around uk-background-muted uk-height-xsmall">
 
-        <FormBtn>
-          Submit our sheet
-              </FormBtn>
+              <div class="uk-width-1-5 uk-card uk-card-default uk-card-body uk-card-small">
+                <Moment format="MM.DD.YYYY">{balance.date}</Moment>
+              </div>
 
-      </form> */}
+              <div class="uk-width-1-5 uk-card uk-card-default uk-card-body uk-card-small">
+                {balance.categoryName}
+              </div>
 
+              <div class="uk-width-1-5 uk-card uk-card-default uk-card-body uk-card-small">
+                {balance.description}
+              </div>
+
+              <div class="uk-width-1-5 uk-card uk-card-default uk-card-body uk-card-small">
+                {balance.spending} $
+                  </div>
+
+              <div class="uk-width-1-5 uk-card uk-card-default uk-card-body uk-card-small">
+                <span uk-icon="trash"></span>
+              </div>
+            </div>
+          )
+        }
+        )
+      ) : <div> No result </div>}
 
     </Container>
   )
-
 }
 
-export default Balance;
-
+export default Balance

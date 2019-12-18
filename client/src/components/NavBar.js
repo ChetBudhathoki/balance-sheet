@@ -56,14 +56,6 @@ const NavBar = () => {
                 >
                   Balance
                 </NavLink>
-                <NavLink className="float"
-                  tag={RouterNavLink}
-                  to="/mysheet"
-                  exact
-                // activeClassName="router-link-exact-active"
-                >
-                  My Sheets
-                </NavLink>
               </NavItem>
             </Nav>
             <Nav className="d-none d-md-block" navbar>
