@@ -10,6 +10,9 @@ import NotFind from "./views/NotFind"
 import Profile from "./views/Profile";
 import { useAuth0 } from "./react-auth0-spa";
 import history from "./utils/history";
+import Result from "./views/Result";
+import SheetInput from "./views/SheetInput"
+import Calculator from "./views/Calculator"
 
 // styles
 import "./App.css";
@@ -36,6 +39,10 @@ const App = () => {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/balance" exact component={Balance} />
+            <Route path="/sheet" exact component={SheetInput} />
+            <Route path="/result" exact component={Result} />
+            <Route path="/calculator" exact component={Calculator} />
+
             <PrivateRoute path="/profile" component={Profile} />
             <Route component={NotFind} /> 
           </Switch>

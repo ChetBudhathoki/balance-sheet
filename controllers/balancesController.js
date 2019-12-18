@@ -15,7 +15,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
-    console.log(req.body);
     db.Balance
     .create(req.body)
     .then(dbModel => res.json(dbModel))
@@ -24,6 +23,17 @@ module.exports = {
   update: function (req, res) {
     db.Balance
     .findOneAndUpdate({_id: req.params.id}, req.body)
+    .then(dbModel => res.json(dbModel))
+    .catch(err => res.status(422).json(err));
+  },
+  total: function (req, res) {
+    db.Balance
+    .aggregate(
+      [
+        {$match: {}},
+        {$group: {_id: "$email", total: {$sum: "$spending"}}}
+      ]
+    )
     .then(dbModel => res.json(dbModel))
     .catch(err => res.status(422).json(err));
   },
