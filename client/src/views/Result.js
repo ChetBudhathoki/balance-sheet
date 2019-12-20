@@ -13,30 +13,33 @@ const Result = () => {
 
   const [balances, setBalances] = useState([]);
 
-  useEffect(() => {
-    loadBalances()
-  }, []);
-
-  if (loading || !user) {
-    return (
-      <div>
-        <Loading />;
-      </div>
-    )
-  }
-
+  
   const loadBalances = () => {
     API.getBalances()
-      .then(res => {
-        console.log(res)
-        setBalances(
-          {
-            balances: res.data, email: user.email,
-          })
+    .then(res => {
+      console.log(res)
+      setBalances(
+        {
+          balances: res.data, email: user.email,
+        })
       })
       .catch(err => console.log(err))
-  };
+    };
 
+    
+    useEffect(() => {
+      loadBalances()
+    }, []);
+    
+    if (loading || !user) {
+      return (
+        <div>
+          <Loading />;
+        </div>
+      )
+    }
+
+    
   const deleteBalance = id => {
     API.deleteBalance(id)
       .then(res => loadBalances())
