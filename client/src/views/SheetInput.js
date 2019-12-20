@@ -11,37 +11,36 @@ const SheetInput = () => {
 
   const { loading, user } = useAuth0();
 
-  const [balances, setBalances] = useState([]);
-  const [email, setEmail] = useState(user.email);
+  const [ ,setBalances] = useState([]);
+  const [email, ] = useState(user.email);
   const [categoryName, setCastegoryName] = useState("");
   const [spending, setSpending] = useState("");
   const [description, setDescription] = useState("");
-
-  useEffect(() => {
-    loadBalances()
-  }, []);
-
-  if (loading || !user) {
-    return (
-      <div>
-        <Loading />;
-      </div>
-    )
-  }
-
+  
   const loadBalances = () => {
     API.getBalances()
-      .then(res => {
-        console.log(res)
-        setBalances(
-          {
-            balances: res.data, email: user.email,
-          })
+    .then(res => {
+      console.log(res)
+      setBalances(
+        {
+          balances: res.data, email: user.email,
+        })
       })
       .catch(err => console.log(err))
-  };
-
-
+    };
+    
+    useEffect(() => {
+      loadBalances()
+    }, [loadBalances]);
+    
+    
+    if (loading || !user) {
+      return (
+        <div>
+          <Loading />;
+        </div>
+      )
+    }
   const handleFormSubmit = (event) => {
     event.preventDefault();
     if (email && categoryName && spending) {
